@@ -10,6 +10,9 @@ Watch in awe as the magical black box provides a correction
 ## Requirements
 Elixir, Erlang, and some sort of LLM. Right now it's just hard-coded to use my local LLM running via ollama. Config to follow
 
+## What's up with all the newb comments
+It's so I can explain syntax and Elixir internals to the rubyists I work with
+
 ## How to run
 To start your Phoenix server:
 

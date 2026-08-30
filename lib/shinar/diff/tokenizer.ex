@@ -25,12 +25,17 @@ defmodule Shinar.Diff.Tokenizer do
   @spec chunk_fun(String.t(), {Token.type() | nil, [String.t()]}) ::
           {:cont, {Token.type(), [String.t()]}}
           | {:cont, {Token.type(), [String.t()]}, {Token.type(), [String.t()]}}
+  # This is how pattern matching works. Rather than a whole bunch of control flow
+  # in a function, just define the function N times but include a pattern
+  # So that a given function is evaluated
   defp chunk_fun(char, {nil, []}) do
     {:cont, {classify(char), [char]}}
   end
 
   defp chunk_fun(char, {type, chars}) do
     case classify(char) do
+      # The pin operator is used so that we match against whatever the passed in type arg was
+      # rather than redefining it
       ^type ->
         {:cont, {type, [char | chars]}}
 

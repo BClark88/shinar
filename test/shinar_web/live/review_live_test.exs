@@ -13,7 +13,7 @@ defmodule ShinarWeb.ReviewLiveTest do
 
     view
     |> element("#correction-form")
-    |> render_submit(%{"original_text" => "", "english_hint" => ""})
+    |> render_submit(%{"original_text" => "", "original_translation" => ""})
 
     assert has_element?(
              view,
@@ -41,7 +41,10 @@ defmodule ShinarWeb.ReviewLiveTest do
 
     view
     |> element("#correction-form")
-    |> render_submit(%{"original_text" => "Hola que tal", "english_hint" => "Hello how are you"})
+    |> render_submit(%{
+      "original_text" => "Hola que tal",
+      "original_translation" => "Hello how are you"
+    })
 
     assert has_element?(view, "#correction-result", "Hola, ¿qué tal?")
   end
