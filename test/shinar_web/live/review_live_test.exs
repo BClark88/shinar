@@ -22,13 +22,27 @@ defmodule ShinarWeb.ReviewLiveTest do
            )
   end
 
-  test "submitting text accepts it and shows an info flash", %{conn: conn} do
+  test "submitting text returns the corrected text", %{conn: conn} do
     {:ok, view, _html} = live(conn, ~p"/")
+
+    Req.Test.stub(LLM.Client, fn conn ->
+      Req.Test.json(conn, %{
+        "choices" => [
+          %{
+            "message" => %{
+              "content" => ~s({"corrected_text": "Hola, ¿qué tal?"})
+            }
+          }
+        ]
+      })
+    end)
+
+    Req.Test.allow(LLM.Client, self(), view.pid)
 
     view
     |> element("#correction-form")
     |> render_submit(%{"original_text" => "Hola que tal", "english_hint" => "Hello how are you"})
 
-    assert has_element?(view, "#flash-info", "Received. Corrections are coming in a later step.")
+    assert has_element?(view, "#correction-result", "Hola, ¿qué tal?")
   end
 end
