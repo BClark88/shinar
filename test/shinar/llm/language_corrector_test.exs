@@ -5,7 +5,7 @@ defmodule LLM.LanguageCorrectorTest do
   alias LLM.LanguageCorrector.Result
 
   test "returns the correction wrapped in a Result struct" do
-    content = ~s({"corrected_text": "¿Qué tal mi chabóncito?"})
+    content = ~s({"corrected_text": "¿Qué tal mi chabón?"})
 
     Req.Test.stub(LLM.Client, fn conn ->
       Req.Test.json(conn, %{
@@ -16,9 +16,9 @@ defmodule LLM.LanguageCorrectorTest do
     assert {:ok,
             %Result{
               original_text: "Hola mi chaboncito",
-              original_translation: nil,
-              corrected_text: "¿Qué tal mi chabóncito?"
-            }} = LanguageCorrector.call("Hola mi chaboncito", "Hello my little friend")
+              original_translation: "What's up broski?",
+              corrected_text: "¿Qué tal mi chabón?"
+            }} = LanguageCorrector.call("Hola mi chaboncito", "What's up broski?")
   end
 
   test "forwards the LLM error" do
