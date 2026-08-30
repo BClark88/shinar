@@ -1,5 +1,16 @@
 # Shinar
 
+## What it is?
+A basic web app for language learners to use to improve their skills and for me to play around with local LLMs
+and do my own version of a git diff
+Write some text in your target language
+Include the original translation if you want
+Watch in awe as the magical black box provides a correction
+
+## Requirements
+Elixir, Erlang, and some sort of LLM. Right now it's just hard-coded to use a local LLM
+
+## How to run
 To start your Phoenix server:
 
 * Run `mix setup` to install and setup dependencies
@@ -7,12 +18,5 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://phoenix.hexdocs.pm/deployment.html).
-
-## Learn more
-
-* Official website: https://www.phoenixframework.org/
-* Guides: https://phoenix.hexdocs.pm/overview.html
-* Docs: https://phoenix.hexdocs.pm
-* Forum: https://elixirforum.com/c/phoenix-forum
-* Source: https://github.com/phoenixframework/phoenix
+## Why Shinar?
+That's where the Tower of Babel was located and I couldn't think of anything cleverer ¯\\\_(ツ)\_/¯
