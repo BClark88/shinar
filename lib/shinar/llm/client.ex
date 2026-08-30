@@ -1,4 +1,4 @@
-defmodule LLM.Client do
+defmodule Shinar.LLM.Client do
   @moduledoc """
   Thin wrapper for calling LLMs via OpenAI compatible API
   """

@@ -1,4 +1,4 @@
-defmodule LLM.LanguageCorrector do
+defmodule Shinar.LLM.LanguageCorrector do
   @moduledoc """
   Corrects learner-written text via an LLM.
 
@@ -7,13 +7,13 @@ defmodule LLM.LanguageCorrector do
   """
 
   @doc """
-  Returns `{:ok, %LLM.LanguageCorrector.Result{}}` with the original text and
+  Returns `{:ok, %Shinar.LLM.LanguageCorrector.Result{}}` with the original text and
   the corrected text, or `{:error, reason}` when the call fails.
   """
   def call(original_text, original_translation \\ "") do
     prompt = build_prompt(original_text, original_translation)
 
-    case LLM.Client.call(prompt) do
+    case Shinar.LLM.Client.call(prompt) do
       {:ok, response} -> {:ok, build_result(original_text, original_translation, response)}
       {:error, reason} -> {:error, reason}
     end
@@ -44,7 +44,7 @@ defmodule LLM.LanguageCorrector do
   end
 
   defp build_result(original_text, original_translation, response) do
-    %LLM.LanguageCorrector.Result{
+    %Shinar.LLM.LanguageCorrector.Result{
       original_text: original_text,
       original_translation: original_translation,
       corrected_text: Map.get(response, "corrected_text")

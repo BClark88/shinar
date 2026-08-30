@@ -17,8 +17,12 @@ defmodule ShinarWeb.ReviewLive do
       {:noreply,
        put_flash(socket, :error, "Please write something in the language you're learning.")}
     else
-      case LLM.LanguageCorrector.call(original_text, english_hint) do
-        {:ok, %LLM.LanguageCorrector.Result{corrected_text: corrected}} ->
+      case Shinar.LLM.LanguageCorrector.call(original_text, english_hint) do
+        # don't pattern match here. We need the whole result to build the diff
+        {:ok, %Shinar.LLM.LanguageCorrector.Result{corrected_text: corrected}} ->
+          # call a module to build the diff
+
+          # then return to the frontend
           {:noreply, assign(socket, corrected_text: corrected)}
 
         {:error, reason} ->

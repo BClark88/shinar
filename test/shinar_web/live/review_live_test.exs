@@ -25,7 +25,7 @@ defmodule ShinarWeb.ReviewLiveTest do
   test "submitting text returns the corrected text", %{conn: conn} do
     {:ok, view, _html} = live(conn, ~p"/")
 
-    Req.Test.stub(LLM.Client, fn conn ->
+    Req.Test.stub(Shinar.LLM.Client, fn conn ->
       Req.Test.json(conn, %{
         "choices" => [
           %{
@@ -37,7 +37,7 @@ defmodule ShinarWeb.ReviewLiveTest do
       })
     end)
 
-    Req.Test.allow(LLM.Client, self(), view.pid)
+    Req.Test.allow(Shinar.LLM.Client, self(), view.pid)
 
     view
     |> element("#correction-form")

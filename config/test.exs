@@ -24,7 +24,7 @@ config :shinar, Shinar.Mailer, adapter: Swoosh.Adapters.Test
 config :swoosh, :api_client, false
 
 # Route LLM HTTP calls through Req.Test stubs in tests instead of the local Ollama server.
-config :shinar, :llm, req_options: [plug: {Req.Test, LLM.Client}]
+config :shinar, :llm, req_options: [plug: {Req.Test, Shinar.LLM.Client}]
 
 # Print only warnings and errors during test
 config :logger, level: :warning

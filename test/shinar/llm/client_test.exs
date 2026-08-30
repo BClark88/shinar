@@ -1,12 +1,12 @@
-defmodule LLM.ClientTest do
+defmodule Shinar.LLM.ClientTest do
   use ExUnit.Case, async: true
 
-  alias LLM.Client
+  alias Shinar.LLM.Client
 
   test "200 response returns the decoded response map" do
     content = ~s({"corrected_text": "¿Qué tal mi chabóncito?"})
 
-    Req.Test.stub(LLM.Client, fn conn ->
+    Req.Test.stub(Shinar.LLM.Client, fn conn ->
       Req.Test.json(conn, %{
         "choices" => [
           %{
@@ -30,7 +30,7 @@ defmodule LLM.ClientTest do
   end
 
   test "non-200 response returns {:error, {:http_error, status, body}}" do
-    Req.Test.stub(LLM.Client, fn conn ->
+    Req.Test.stub(Shinar.LLM.Client, fn conn ->
       conn
       |> Plug.Conn.put_status(404)
       |> Req.Test.json(%{"error" => %{"message" => "model not found"}})
@@ -41,7 +41,7 @@ defmodule LLM.ClientTest do
   end
 
   test "transport error returns {:error, %Req.TransportError{}}" do
-    Req.Test.stub(LLM.Client, fn conn -> Req.Test.transport_error(conn, :timeout) end)
+    Req.Test.stub(Shinar.LLM.Client, fn conn -> Req.Test.transport_error(conn, :timeout) end)
 
     assert {:error, %Req.TransportError{reason: :timeout}} = Client.call("Hola mi chaboncito")
   end

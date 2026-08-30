@@ -1,8 +1,8 @@
-defmodule LLM.LanguageCorrector.Result do
+defmodule Shinar.LLM.LanguageCorrector.Result do
   @moduledoc """
   The outcome of a correction request.
 
-  Built only by `LLM.LanguageCorrector`; treat as opaque data elsewhere.
+  Built only by `Shinar.LLM.LanguageCorrector`; treat as opaque data elsewhere.
   """
 
   @enforce_keys [:original_text, :original_translation, :corrected_text]
