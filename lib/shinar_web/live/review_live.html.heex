@@ -1,0 +1,37 @@
+<Layouts.app flash={@flash}>
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
+    <div class="text-center">
+      <h1 class="text-4xl font-semibold tracking-tight text-balance">Shinar</h1>
+      <p class="mt-3 text-base-content/70">
+        Write in the language you're learning. Get corrections.
+      </p>
+    </div>
+
+    <.form
+      for={@form}
+      id="correction-form"
+      phx-submit="submit"
+      class="mt-12 space-y-6"
+    >
+      <.input
+        field={@form[:original_text]}
+        type="textarea"
+        label="Your draft in the language you're learning"
+        placeholder="Escribe aquí en el idioma que estás aprendiendo…"
+        class="min-h-48 w-full"
+      />
+
+      <.input
+        field={@form[:english_hint]}
+        type="textarea"
+        label="What you meant to say (optional)"
+        placeholder="What did you mean to write? In your own language…"
+        class="min-h-28 w-full"
+      />
+
+      <div class="flex justify-end pt-4">
+        <.button>Get corrections</.button>
+      </div>
+    </.form>
+  </div>
+</Layouts.app>
