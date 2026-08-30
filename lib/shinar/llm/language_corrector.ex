@@ -14,7 +14,7 @@ defmodule LLM.LanguageCorrector do
     prompt = build_prompt(original_text, original_translation)
 
     case LLM.Client.call(prompt) do
-      {:ok, response} -> {:ok, build_result(original_text, response)}
+      {:ok, response} -> {:ok, build_result(original_text, original_translation, response)}
       {:error, reason} -> {:error, reason}
     end
   end
@@ -43,10 +43,10 @@ defmodule LLM.LanguageCorrector do
     end
   end
 
-  defp build_result(original_text, response) do
+  defp build_result(original_text, original_translation, response) do
     %LLM.LanguageCorrector.Result{
       original_text: original_text,
-      original_translation: nil,
+      original_translation: original_translation,
       corrected_text: Map.get(response, "corrected_text")
     }
   end
