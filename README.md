@@ -13,6 +13,10 @@ Elixir, Erlang, and some sort of LLM. Right now it's just hard-coded to use my l
 ## What's up with all the newb comments
 It's so I can explain syntax and Elixir internals to the rubyists I work with
 
+## Known limitations
+The Myers diff algorithm probably isn't the best. This was just a learning excercise. Elixir already has
+a Myers diff function. I just wanted to learn how it works
+
 ## How to run
 To start your Phoenix server:
 
